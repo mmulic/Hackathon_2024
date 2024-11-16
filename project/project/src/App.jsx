@@ -1,14 +1,18 @@
 import "./App.css";
-import bugsbunny from "./assets/bugsBunny_img.jpeg";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/mainPage";
+import SelectPage from "./pages/selectPage";
+import InputPage from "./pages/inputPage";
 
 function App() {
   return (
-    <div>
-      <span className=" text-3xl text-red-500 h-screen w-full flex absolute justify-center items-center ">
-        Omar is fat
-      </span>
-      <img src={bugsbunny} alt="bugs" className=" w-1/3 h-1/2 absolute flex" />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/select" element={<SelectPage />} />
+        <Route path="/input" element={<InputPage />} />
+      </Routes>
+    </Router>
   );
 }
 
