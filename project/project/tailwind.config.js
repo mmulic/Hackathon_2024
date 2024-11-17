@@ -10,6 +10,12 @@ export default {
       pResOne: "428px",
       pResTwo: "320px",
     },
+    extend: {
+      colors: {
+        customGray: "#D9D9D9",
+        customRed: "#EB0A1E",
+      },
+    },
   },
   plugins: [],
 };

@@ -1,10 +1,25 @@
-import Button from "./button";
 import "../../index.css";
 
-export default function DropDown({ text = "insert text" }) {
+export default function DropDown({
+  options = [],
+  defaultText = "Select an option",
+  onChange,
+}) {
   return (
-    <Button className="w-40 h-10 font-inria text-xl bg-customGray shadow-sm shadow-black hover:shadow-none rounded-md transition-shadow duration-300">
-      {text}
-    </Button>
+    <div className="relative inline-block w-40">
+      <select
+        className="w-full h-10 px-2 text-xl font-inria bg-customGray text-black shadow-sm shadow-black rounded-md transition-shadow duration-300 hover:shadow-none focus:outline-none"
+        onChange={onChange}
+      >
+        <option value="" disabled selected>
+          {defaultText}
+        </option>
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
