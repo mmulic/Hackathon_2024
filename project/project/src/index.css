@@ -18,4 +18,9 @@
   .shrink-expand {
     animation: shrinkExpand 1s infinite;
   }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
   
