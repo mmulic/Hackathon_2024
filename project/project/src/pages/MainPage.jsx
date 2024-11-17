@@ -10,7 +10,7 @@ export default function MainPage() {
     const handleScroll = (event) => {
       // Update scrollY based on the wheel event
       setScrollY(prevScrollY => {
-        const newScrollY = prevScrollY, event.deltaY; // Increase or decrease based on scroll direction
+        const newScrollY = prevScrollY + event.deltaY; // Increase or decrease based on scroll direction
         return Math.max(0, Math.min(1000, newScrollY)); // Restrict scrollY within 0 to 1000 range
       });
     };
@@ -32,13 +32,13 @@ export default function MainPage() {
     return Math.min(1, (scrollY * 1.5)/ 500); // Fade in text as we scroll
   };
 
-  const calculateButtonOpacity = () => {
-    return Math.min(1, (scrollY - 200) / 300); // Button fades in after some scrolling
+  const calculateButtonCapacity = () => {
+    return Math.min(1, (scrollY - 400) / 300); // Button fades in after scrolling past 400px
   };
 
 
   return (
-      <div className="relative w-full h-screen">
+      <div className="relative w-full h-screen bg-grey">
         <img className="w-full h-screen opacity-0"
           src="https://fourpage-inbound.adpearance.com/images/uploads/ares/25895/seq_my23_0015_v001_egmwdzgkg4gybp4j0o1jghmcyjonhop.jpg" 
           alt="Background" style={{
@@ -48,7 +48,7 @@ export default function MainPage() {
         /><div>
           <img src="https://seeklogo.com/images/T/toyota-logo-F54DDDC736-seeklogo.com.png" alt="Child Image" class="absolute top-[calc(50%-500px)] left-[calc(50%-120px)] w-1/10 h-auto" />
       
-          <h2 class=" shrink-expand absolute font-inria top-[calc(50%--480px)] left-[calc(50%-50px)] transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl animation-shrinkExpand" style={{
+          <h2 class=" shrink-expand absolute font-inria top-[calc(50%--480px)] left-[calc(50%-50px)] transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl " style={{
             opacity: calculateBackgroundOpacity(), // Change opacity based on scroll
           }}>Scroll down</h2>
           <div>
@@ -66,11 +66,11 @@ export default function MainPage() {
 Toyota's fuel economy data. Discover the possibilities of Toyota engineering 
 on a path to a greener future.
             </h1>
-          <Button className=" font-inria text-2xl italic absolute top-[calc(50%+150px)] left-[calc(50%-35px)] z-20 bg-red-600 text-white py-2 px-4 rounded-md" style={{
-            opacity: calculateBackgroundOpacity(), // Change opacity based on scroll
-          }}>
-            Begin
-          </Button>
+          <div >
+            <Button className=" font-inria text-2xl italic absolute top-[calc(50%+150px)] left-[calc(50%-35px)] z-20 bg-red-600 text-white py-2 px-4 rounded-md opacity-0" >
+              Begin
+            </Button>
+          </div>
             
           </div>
         </div>
