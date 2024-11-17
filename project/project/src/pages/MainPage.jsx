@@ -39,7 +39,7 @@ export default function MainPage() {
 
   return (
       <div className="relative w-full h-screen bg-grey">
-        <img className="w-full h-screen opacity-0"
+        <img className="absolute inset-0 flex flex-col items-center justify-between text-center w-full h-screen opacity-0"
           src="https://fourpage-inbound.adpearance.com/images/uploads/ares/25895/seq_my23_0015_v001_egmwdzgkg4gybp4j0o1jghmcyjonhop.jpg" 
           alt="Background" style={{
             opacity: calculateBackgroundOpacity(scrollY), // Adjust opacity based on scroll
@@ -60,16 +60,25 @@ export default function MainPage() {
             opacity: calculateTextOpacity(), // Change opacity based on scroll
           }}>Fuel Track <bold>PRO</bold></h1>
 
-            <h1 class='opacity-0 front-inria text-2xl italic absolute top-[calc(50%-0px)] left-[calc(50%-410px)] w-1/2 h-auto'style={{
-            opacity: calculateTextOpacity(), // Change opacity based on scroll
-          }}>Welcome to FuelTrack Pro – your go-to tool for exploring and optimizing
-Toyota's fuel economy data. Discover the possibilities of Toyota engineering 
-on a path to a greener future.
-            </h1>
+<div
+  className="absolute w-full h-full flex justify-center translate-y-14 items-center"
+  style={{
+    opacity: calculateTextOpacity(), // Change opacity based on scroll
+  }}
+>
+  <h1 className="front-inria text-2xl italic text-center">
+    Welcome to FuelTrack Pro – your go-to tool for exploring and optimizing<br />
+    Toyota's fuel economy data. Discover the possibilities of Toyota engineering<br />
+    on a path to a greener future.
+  </h1>
+</div>
+
           <div >
-            <Button className=" font-inria text-2xl italic absolute top-[calc(50%+150px)] left-[calc(50%-35px)] z-20 bg-red-600 text-white py-2 px-4 rounded-md opacity-0" >
+            <button className=" font-inria text-2xl italic absolute top-[calc(50%+150px)] left-[calc(50%-35px)] z-20 bg-red-600 text-white py-2 px-4 rounded-md opacity-0" style={{
+              opacity :calculateTextOpacity(scrollY),
+            }} >
               Begin
-            </Button>
+            </button>
           </div>
             
           </div>
@@ -77,3 +86,4 @@ on a path to a greener future.
       </div>
   );
 }
+
