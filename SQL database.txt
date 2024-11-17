@@ -1,0 +1,35 @@
+-- Create the database
+CREATE DATABASE fueltypedata;
+
+-- Use the new database
+USE fueltypedata;
+
+-- Create the table
+CREATE TABLE vehicle_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    model_year VARCHAR(10) NOT NULL,
+    fuel_type VARCHAR(20) NOT NULL,
+    fuel_economy VARCHAR(10) NOT NULL,
+    mileage VARCHAR(30) NOT NULL
+);
+
+
+
+---------------------------------------------------
+
+
+
+INSERT INTO vehicle_data (model_year, fuel_type, fuel_economy, mileage)
+VALUES
+    ('2021', 'Petrol', '10 MPG', '0-10,000 miles'),
+    ('2022', 'Diesel', '15 MPG', '10,001-20,000 miles'),
+    ('2023', 'Electric', '20 MPG', '20,001-50,000 miles'),
+    ('2024', 'Hybrid', '25 MPG', '50,001-100,000 miles'),
+    ('2025', 'Petrol', '30 MPG', '100,001+ miles');
+
+
+---------------------------------------------------
+
+ALTER TABLE vehicle_data
+ADD COLUMN model VARCHAR(255) NOT NULL,
+ADD COLUMN type VARCHAR(255) NOT NULL;
