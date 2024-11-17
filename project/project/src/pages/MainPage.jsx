@@ -10,7 +10,7 @@ export default function MainPage() {
     const handleScroll = (event) => {
       // Update scrollY based on the wheel event
       setScrollY(prevScrollY => {
-        const newScrollY = prevScrollY + event.deltaY; // Increase or decrease based on scroll direction
+        const newScrollY = prevScrollY, event.deltaY; // Increase or decrease based on scroll direction
         return Math.max(0, Math.min(1000, newScrollY)); // Restrict scrollY within 0 to 1000 range
       });
     };
