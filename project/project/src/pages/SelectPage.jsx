@@ -15,7 +15,7 @@ export default function SelectPage() {
         />
         {/* Dropdown */}
         <div className="mt-5">
-          <DropDown text="" />
+          <DropDown />
         </div>
       </div>
     </div>
