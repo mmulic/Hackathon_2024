@@ -29,16 +29,17 @@ db.connect((err) => {
 
 // API Route to Add Vehicle Data
 app.post("/add-vehicle", (req, res) => {
-  const { model_year, fuel_type, fuel_economy, mileage } = req.body;
+  const { model_year, fuel_type, fuel_economy, mileage, model, type } =
+    req.body;
 
   const query = `
-        INSERT INTO vehicle_data (model_year, fuel_type, fuel_economy, mileage)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO vehicle_data (model_year, fuel_type, fuel_economy, mileage, model, type)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
 
   db.query(
     query,
-    [model_year, fuel_type, fuel_economy, mileage],
+    [model_year, fuel_type, fuel_economy, mileage, model, type],
     (err, result) => {
       if (err) {
         console.error("Error inserting vehicle data:", err);
