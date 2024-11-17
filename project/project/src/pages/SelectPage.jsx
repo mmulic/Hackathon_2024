@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import SubmitButton from "../components/button stuff/submitButton";
 import { useState } from "react";
+import axios from "axios"; // Import axios
 
 export default function SelectPage() {
   // State to track dropdown selections
@@ -11,18 +12,36 @@ export default function SelectPage() {
   const [fuelType, setFuelType] = useState("");
   const [fuelEconomy, setFuelEconomy] = useState("");
   const [mileage, setMileage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track submission status
 
   // Check if all options are chosen
   const allOptionsChosen = modelYear && fuelType && fuelEconomy && mileage;
 
-  const handleSubmit = () => {
+  // Submit data to backend
+  const handleSubmit = async () => {
     if (allOptionsChosen) {
-      console.log({
-        modelYear,
-        fuelType,
-        fuelEconomy,
-        mileage,
-      });
+      const data = {
+        model_year: modelYear,
+        fuel_type: fuelType,
+        fuel_economy: fuelEconomy,
+        mileage: mileage,
+      };
+
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/add-vehicle",
+          data
+        );
+        console.log("Response from server:", response.data);
+
+        // Mark as submitted
+        setIsSubmitted(true);
+      } catch (error) {
+        console.error("Error adding vehicle data:", error);
+        alert("Failed to add vehicle data. Please try again.");
+      }
+    } else {
+      alert("Please select all options before submitting.");
     }
   };
 
@@ -50,12 +69,8 @@ export default function SelectPage() {
             onChange={(e) => setFuelType(e.target.value)}
           />
           <DropDown
-            defaultText="Fuel Economy"
-            options={[
-              "MPG (Miles per Gallon)",
-              "km/L (Kilometers per Liter)",
-              "L/100km (Liters per 100 Kilometers)",
-            ]}
+            defaultText="Fuel Economy (MPG)"
+            options={["10 MPG", "15 MPG", "20 MPG", "25 MPG", "30 MPG"]}
             onChange={(e) => setFuelEconomy(e.target.value)}
           />
           <DropDown
@@ -72,15 +87,11 @@ export default function SelectPage() {
         </div>
 
         {/* Submit Button */}
-        <div
-          className={`mt-10 ${
-            allOptionsChosen
-              ? "cursor-pointer"
-              : "cursor-not-allowed opacity-50"
-          }`}
-          onClick={handleSubmit}
-        >
-          <SubmitButton />
+        <div className="mt-10" onClick={!isSubmitted ? handleSubmit : null}>
+          <SubmitButton
+            isSubmitted={isSubmitted}
+            allOptionsChosen={allOptionsChosen}
+          />
         </div>
       </div>
 
